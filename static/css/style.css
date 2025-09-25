@@ -1,0 +1,5 @@
+body { background-color: #f8f9fa; }
+.stat-card { border-left: 4px solid #0d6efd; }
+.flash-area { margin-bottom: 1rem; }
+#questionsTable tbody tr.unsolved { background-color: #fff; }
+#questionsTable tbody tr.solved { background-color: #f0fff4; }
