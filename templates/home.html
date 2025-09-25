@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="mb-4">
+  <div class="text-center mb-3">
+    <h1>Tech Interview Question Vault</h1>
+    <p class="lead">Save, categorize, and track your coding interview questions.</p>
+  </div>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <div class="card-body">
+          <h5 class="card-title">Total Questions</h5>
+          <p class="display-6">{{ stats.total }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <div class="card-body">
+          <h5 class="card-title">Solved</h5>
+          <p class="display-6 text-success">{{ stats.solved }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card stat-card">
+        <div class="card-body">
+          <h5 class="card-title">Unsolved</h5>
+          <p class="display-6 text-danger">{{ stats.unsolved }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="text-center">
+    <a class="btn btn-primary me-2" href="{{ url_for('add_question') }}">Add New Question</a>
+    <a class="btn btn-outline-secondary" href="{{ url_for('questions') }}">Browse Questions</a>
+  </div>
+</section>
+{% endblock %}
