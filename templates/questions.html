@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">All Questions</h2>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <form class="row gy-2 gx-2 align-items-end" id="filtersForm">
+      <div class="col-md-3">
+        <label class="form-label">Search</label>
+        <input type="text" class="form-control" id="searchInput" placeholder="Title / Company / Tag" value="{{ preset.q }}" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Difficulty</label>
+        <select class="form-select" id="difficultyFilter">
+          <option value="">All</option>
+          {% for d in ['Easy','Medium','Hard'] %}
+            <option value="{{ d }}" {% if preset.difficulty == d %}selected{% endif %}>{{ d }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Company</label>
+        <select class="form-select" id="companyFilter">
+          <option value="">All</option>
+          {% for c in companies %}
+            <option value="{{ c }}" {% if preset.company == c %}selected{% endif %}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Tag</label>
+        <select class="form-select" id="tagFilter">
+          <option value="">All</option>
+          {% for t in tags %}
+            <option value="{{ t }}" {% if preset.tag == t %}selected{% endif %}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover align-middle" id="questionsTable">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Difficulty</th>
+        <th>Company</th>
+        <th>Tags</th>
+        <th>Solved</th>
+        <th class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for q in questions %}
+      <tr data-title="{{ q.title|lower }}" data-company="{{ q.company|lower }}" data-tags="{{ q.tags|lower }}" data-difficulty="{{ q.difficulty }}" data-id="{{ q.id }}">
+        <td>
+          <div class="fw-semibold">{{ q.title }}</div>
+          <div class="small text-muted">#{{ q.id }}</div>
+        </td>
+        <td>{{ q.difficulty }}</td>
+        <td>{{ q.company }}</td>
+        <td>{{ q.tags }}</td>
+        <td>
+          <span class="badge rounded-pill bg-{{ 'success' if q.solved else 'secondary' }} solved-badge">{{ 'Solved' if q.solved else 'Unsolved' }}</span>
+        </td>
+        <td class="text-end">
+          <a href="{{ url_for('edit_question', q_id=q.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+          <button type="button" class="btn btn-sm btn-outline-danger btn-delete" data-id="{{ q.id }}" data-title="{{ q.title }}">Delete</button>
+          <button type="button" class="btn btn-sm btn-outline-success btn-toggle" data-id="{{ q.id }}">{{ 'Mark Unsolved' if q.solved else 'Mark Solved' }}</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete: <strong id="deleteItemTitle"></strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form method="post" id="deleteForm">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
