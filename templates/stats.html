@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">Statistics</h2>
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Summary</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Total <span class="badge bg-primary rounded-pill">{{ stats.total }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Solved <span class="badge bg-success rounded-pill">{{ stats.solved }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Unsolved <span class="badge bg-danger rounded-pill">{{ stats.unsolved }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Solved vs Unsolved</h5>
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">By Difficulty</h5>
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if Chart.js is loaded
+    if (typeof Chart === 'undefined') {
+      console.error('Chart.js not loaded');
+      return;
+    }
+
+    const pieCtx = document.getElementById('pieChart');
+    if (pieCtx) {
+      new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Solved', 'Unsolved'],
+          datasets: [{
+            data: [{{ stats.solved }}, {{ stats.unsolved }}],
+            backgroundColor: ['#198754', '#dc3545']
+          }]
+        },
+        options: { 
+          responsive: true,
+          maintainAspectRatio: true
+        }
+      });
+    }
+
+    const barCtx = document.getElementById('barChart');
+    if (barCtx) {
+      new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: {{ difficulty_labels | tojson }},
+          datasets: [{
+            label: 'Questions',
+            data: {{ difficulty_counts | tojson }},
+            backgroundColor: [
+              '#28a745',  // Green for Easy
+              '#ffc107',  // Yellow/Orange for Medium
+              '#dc3545'   // Red for Hard
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          scales: {
+            y: { 
+              beginAtZero: true,
+              ticks: {
+                precision: 0,
+                stepSize: 1
+              }
+            }
+          }
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}
