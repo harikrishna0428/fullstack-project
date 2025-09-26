@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">Edit Question</h2>
+<form method="post" id="questionForm" novalidate>
+  <div class="mb-3">
+    <label class="form-label">Question Title</label>
+    <input type="text" class="form-control" name="title" required value="{{ q.title }}" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Full Question Description</label>
+    <textarea class="form-control" name="description" rows="5" required>{{ q.description }}</textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Solution</label>
+    <textarea class="form-control" name="solution" rows="5" required>{{ q.solution }}</textarea>
+  </div>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label class="form-label">Difficulty</label>
+      <select class="form-select" name="difficulty" required>
+        {% for d in ['Easy','Medium','Hard'] %}
+          <option value="{{ d }}" {% if q.difficulty==d %}selected{% endif %}>{{ d }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Company</label>
+      <input type="text" class="form-control" name="company" required value="{{ q.company }}" />
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Tags (comma-separated)</label>
+      <input type="text" class="form-control" name="tags" required value="{{ q.tags }}" />
+    </div>
+  </div>
+  <div class="form-check mt-3">
+    <input class="form-check-input" type="checkbox" id="solvedCheck" name="solved" {% if q.solved %}checked{% endif %} />
+    <label class="form-check-label" for="solvedCheck">Mark as solved</label>
+  </div>
+  <div class="mt-4">
+    <button class="btn btn-primary" type="submit">Save Changes</button>
+    <a class="btn btn-secondary" href="{{ url_for('questions') }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}
