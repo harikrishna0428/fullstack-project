@@ -197,22 +197,28 @@ Full stack Project/
 ---
 
 ## 🎨 Screenshots
-<img width="1349" height="521" alt="image" src="https://github.com/user-attachments/assets/54b6b640-b898-4f5b-b29a-a3505e35afa5" />
+<img width="1349" height="521" alt="Screenshot 2025-10-07 220915" src="https://github.com/user-attachments/assets/1ae4435d-faaa-451d-b7f2-99b669cef704" />
+
 --This is the Home page--
 <br><br><br>
-<img width="1300" height="645" alt="image" src="https://github.com/user-attachments/assets/9011a851-9bd4-485c-84d1-0263a09ec900" />
+<img width="1300" height="645" alt="Screenshot 2025-10-07 230507" src="https://github.com/user-attachments/assets/23cd7e4c-4a9b-4492-b391-b988be71839c" />
+
 --This is the page where we added questions which we faced in interviews--
 <br><br><br>
-<img width="1339" height="444" alt="image" src="https://github.com/user-attachments/assets/24d9a223-fbf7-4c7e-b6fb-9df8db3ae417" />
+<img width="1339" height="444" alt="Screenshot 2025-10-07 230637" src="https://github.com/user-attachments/assets/032da5f9-7bbf-44ae-a05c-39882d446d77" />
+
 --This is where we will see questions--
 <br><br><br>
-<img width="566" height="596" alt="image" src="https://github.com/user-attachments/assets/10dffb49-0c04-4e94-941b-5bfe0bf402df" />
+<img width="566" height="596" alt="Screenshot 2025-10-07 230839" src="https://github.com/user-attachments/assets/2d6dcd89-d1a3-4af5-85e6-714a2055690a" />
+
 --In this page we can see the stats of the questions which we solved before--
 <br><br><br>
-<img width="1347" height="81" alt="image" src="https://github.com/user-attachments/assets/1c5306e1-f068-4c0a-bf77-24176a7e82c4" />
+<img width="1347" height="71" alt="Screenshot 2025-10-07 231008" src="https://github.com/user-attachments/assets/f0cebd34-9a41-453d-a536-ecd284d54225" />
+
 --If we click on this we will get details of the questions in CSV files--
 <br><br><br>
-<img width="1339" height="642" alt="image" src="https://github.com/user-attachments/assets/68daec73-756a-42f1-995c-04374edafeef" />
+<img width="1339" height="621" alt="Screenshot 2025-10-07 232601" src="https://github.com/user-attachments/assets/780a4e46-b388-48ce-a3e3-d1b9fc93f2f8" />
+
 --By clicking this random it will generate a random question--
 
 
